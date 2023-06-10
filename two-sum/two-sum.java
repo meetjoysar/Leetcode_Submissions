@@ -1,17 +1,17 @@
 class Solution {
-    public int[] twoSum(int[] nums, int target) {
+    public int[] twoSum(int[] nums, int target) 
+    {
+        Map<Integer, Integer> complements = new HashMap<>();
         for (int i = 0; i < nums.length; i++)
         {
-            for (int j = i+1; j < nums.length; j++)
+            Integer complementIndex = complements.get(nums[i]);
+            if (complementIndex != null) 
             {
-                // int complement = target - nums[i];
-                if (nums[j] + nums[i] == target)
-                {
-                    return new int[] {i, j};
-                }
+                return new int[]{i, complementIndex};
             }
+            complements.put(target - nums[i], i);
         }
-        // throw new IllegalArgumentException("No Match Found");
         return nums;
+        
     }
 }
